@@ -1,0 +1,47 @@
+{
+  "ModelName": "Leaderboard Db",
+  "ModelMetadata": {
+    "Author": "Fatih Kahveci",
+    "Description": "",
+    "AWSService": "Amazon DynamoDB",
+    "Version": "2.0"
+  },
+  "DataModel": [
+    {
+      "TableName": "leaderboard",
+      "KeyAttributes": {
+        "PartitionKey": {
+          "AttributeName": "user_id",
+          "AttributeType": "S"
+        },
+        "SortKey": {
+          "AttributeName": "score",
+          "AttributeType": "N"
+        }
+      },
+      "NonKeyAttributes": [
+        {
+          "AttributeName": "country_code",
+          "AttributeType": "S"
+        }
+      ],
+      "GlobalSecondaryIndexes": [
+        {
+          "IndexName": "leaderboard_country",
+          "KeyAttributes": {
+            "PartitionKey": {
+              "AttributeName": "country_code",
+              "AttributeType": "S"
+            }
+          },
+          "Projection": {
+            "ProjectionType": "ALL"
+          }
+        }
+      ],
+      "DataAccess": {
+        "MySql": {}
+      }
+    }
+  ]
+}
